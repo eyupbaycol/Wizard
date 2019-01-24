@@ -1,0 +1,62 @@
+<core:FragmentDefinition
+		height="100%"
+		xmlns:layout="sap.ui.layout"
+		xmlns:form="sap.ui.layout.form"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m">
+		<Page id="wizardReviewPage" showHeader="false">
+			<content>
+				<form:SimpleForm
+						title="1.Personel Bilgileri"
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout">
+					<form:content>
+						<Label text="Personel Numarası"/>
+						<Text text="{mainModel>/izinData/Pernr}"/>
+						<Label text="Personel Adı"/>
+						<Text text="{mainModel>/izinData/kAdi}"/>
+						<Link press="editStepOne" text="Düzenle" />
+					</form:content>
+				</form:SimpleForm>
+
+				<form:SimpleForm
+						title="İzin Tarihleri"
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout">
+					<form:content>
+						<Label text="İzin Tipi"/>
+						<Text text="{mainModel>/izinData/izintip}"/>
+						<Label text="İzin Başlangıç Tarihi"/>
+						<Text text="{mainModel>/izinData/IBegda}"/>
+						<Label text="İzin Bitiş Tarihi"/>
+						<Text  text="{mainModel>/izinData/IEndda}"/>
+						<Link press="editStepTwo" text="Düzenle" />
+					</form:content>
+				</form:SimpleForm>
+
+				<form:SimpleForm
+						title="3.İzin İşlemleri"
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout">
+					<form:content>
+						<Label text="İzin Türü"/>
+						<Text text="{mainModel>/izinData/izintur}"/>
+						<Label text="Açıklama"/>
+						<Text text="{mainModel>/izinData/aciklama}"/>
+						<Link press="editStepThree" text="Düzenle" />
+					</form:content>
+				</form:SimpleForm>
+			</content>
+			<footer>
+				<Bar>
+					<contentRight>
+						<Button text="Submit" press="handleWizardSubmit"></Button>
+						<Button text="Cancel" press="handleWizardCancel"></Button>
+					</contentRight>
+				</Bar>
+			</footer>
+		</Page>
+</core:FragmentDefinition>

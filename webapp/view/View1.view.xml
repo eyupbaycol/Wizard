@@ -1,0 +1,130 @@
+<mvc:View
+		height="100%"
+		controllerName="Wizard.Wizard.controller.View1"
+		xmlns:form="sap.ui.layout.form"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+		<NavContainer id="wizardNavContainer">
+			<pages>
+				<Page
+				id="wizardContentPage"
+				showHeader="false">
+					<content>
+						<Wizard id="CreateProductWizard"
+								complete="wizardCompletedHandler">
+							<WizardStep id="ProductTypeStep"
+										title="Personel Bilgileri"
+										validated="true"
+										activate="additionalInfoValidationStep1">
+								<MessageStrip class="sapUiSmallMarginBottom"
+										text="Lütfen Bütün Alanları Eksiksiz Doldurun"
+										showIcon="true"/>
+								<HBox
+										alignItems="Center"
+										justifyContent="Center"
+										width="100%">
+								</HBox>
+										<Label text="Personel Numarası:"/>
+										<Input
+										id="pernr"
+										value="{mainModel>/izinData/Pernr}"
+										liveChange="additionalInfoValidationStep1"/>
+										<Label text="Personel Ad Soyad:"/>
+										<Input
+										id="kadi"
+										value="{mainModel>/izinData/kAdi}"
+										liveChange="additionalInfoValidationStep1"/>
+							</WizardStep>
+							<WizardStep id="ProductInfoStep"
+									title="İzin Tarihleri"
+										validated="true"
+										activate="additionalInfoValidationStep2">
+								<MessageStrip class="sapUiSmallMarginBottom"
+										text="Lütfen Bütün Alanları Eksiksiz Doldurun"
+										showIcon="true"/>
+								<HBox
+										alignItems="Center"
+										justifyContent="Center"
+										width="100%">
+								</HBox>
+								<Label text="İzin Tipi:"/>
+								<ComboBox
+										change="additionalInfoValidationStep2"
+										id="izinTipi"
+										value="{mainModel>/izinData/izintip}"
+				                    	items="{
+				                          path:'mainModel>/izinTipi'
+				                       		}"
+				            			width="100%">
+                                	<core:Item key="{mainModel>key}" text="{mainModel>text}"/>
+                            	 </ComboBox>
+								<Label text="Başlangıç Tarihi:"/>
+								<DatePicker
+                            	id="baslangicTarih"
+                            	value ="{parts:[{path: 'mainModel>/izinData/IBegda'}],formatter : '.formatter.dateformat'}"
+	             				dateValue ="{mainModel>/izinData/IBegda}"
+                                displayFormat="dd MM yyyy"
+                                maxDate="{mainModel>/izinData/IEndda}"
+                                valueFormat="yyyy-MM-ddT00:00:00"
+                                change="handleChange"
+                                width="100%"/>
+                                <Label text="Bitiş Tarihi"/>
+								<DatePicker
+                            	id="bitisTarih"
+                                displayFormat="dd MM yyyy"
+                                value ="{parts:[{path: 'mainModel>/izinData/IEndda'}],formatter : '.formatter.dateformat'}"
+	             				dateValue ="{mainModel>/izinData/IEndda}"
+	             				minDate="{mainModel>/izinData/IBegda}"
+                                valueFormat="yyyy-MM-ddT00:00:00"
+                                change="handleChange"
+                                width="100%"/>
+                                <Label text="İzin Günü:"/>
+                                <Input id="izinGunSayisi"
+                               	enabled="false"/>
+							</WizardStep>
+						
+							<WizardStep id="PricingStep"
+									title="İzin İşlemleri"
+										activate="additionalInfoValidationStep3"
+										validated="true"
+										>
+								<MessageStrip class="sapUiSmallMarginBottom"
+									text="Lütfen Bütün Alanları Eksiksiz Doldurun"
+										showIcon="true"/>
+								<HBox
+										alignItems="Center"
+										justifyContent="Center"
+										width="100%">
+								</HBox>
+									<Label text="İzin Türü:"/>
+									<ComboBox
+												value="{mainModel>/izinData/izintur}"
+												change="additionalInfoValidationStep3"
+												id="izinTuru"
+				                            	items="{
+				                                 path:'mainModel>/izinTurleri'
+				                            	}"
+				                            	width="100%">
+                                <core:Item key="{mainModel>key}" text="{mainModel>text}"/>
+                             </ComboBox>
+                             <Label text="Açıklama:"/>
+                             <TextArea 
+                             id="aciklama"
+                             liveChange="additionalInfoValidationStep3"
+                             value="{mainModel>/izinData/aciklama}" rows="8" 
+                             width="100%"/>
+							</WizardStep>
+						</Wizard>
+					</content>
+					<footer>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button text="Cancel" press="handleWizardCancel"/>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+			</pages>
+		</NavContainer>
+</mvc:View>
